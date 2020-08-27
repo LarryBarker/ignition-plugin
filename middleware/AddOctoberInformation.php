@@ -11,13 +11,10 @@ class AddOctoberInformation
 {
     public function handle(Report $report, $next)
     {
-        // $report->frameworkVersion(app()->version());
-
         $pluginList = '';
         $report->group('OctoberCMS information', [
             'October version' => Parameter::get('system::core.build'),
             'Plugins' => PluginVersion::all()->map(function ($plugin) use ($pluginList) {
-                // return 'foobar';
                 return $pluginList . ' ' . $plugin->code . ' (' . $plugin->version . ")";
             })
         ]);
